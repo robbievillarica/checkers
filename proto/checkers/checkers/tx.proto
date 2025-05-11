@@ -18,6 +18,7 @@ service Msg {
   // parameters. The authority defaults to the x/gov module account.
   rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
   rpc CreatePost   (MsgCreatePost  ) returns (MsgCreatePostResponse  );
+  rpc CreateGame   (MsgCreateGame  ) returns (MsgCreateGameResponse  );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -45,4 +46,15 @@ message MsgCreatePost {
 }
 
 message MsgCreatePostResponse {}
+
+message MsgCreateGame {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string black   = 2;
+  string red     = 3;
+}
+
+message MsgCreateGameResponse {
+  string gameIndex = 1;
+}
 
